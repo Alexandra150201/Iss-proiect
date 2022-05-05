@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="theater.model.Seat"
+           table="Seat" lazy="false">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property
+                name="position"
+                column="position"/>
+        <property
+                name="number"
+                column="number"/>
+        <property
+                name="price"
+                column="price"/>
+        <property
+                name="status"
+                column="status">
+            <type name="org.hibernate.type.EnumType">
+        <param name="enumClass">theater.model.StatusType</param>
+        <param name="useNamed">true</param>
+                <param name="type">12</param>
+    </type>
+    </property>
+        <many-to-one
+                name="booking" class="theater.model.Booking" lazy="false" fetch="join"
+                cascade="all"
+                column="booking"/>
+    </class>
+</hibernate-mapping>

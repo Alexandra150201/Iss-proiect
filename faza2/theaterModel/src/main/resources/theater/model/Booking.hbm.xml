@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="theater.model.Booking"
+           table="Booking">
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <property
+                name="name"
+                column="name"/>
+        <property
+                name="telephone"
+                column="telephone"/>
+        <many-to-one
+                name="showEvent" class="theater.model.ShowEvent" lazy="false" fetch="join"
+                cascade="all"
+                column="showEvent"/>
+
+    </class>
+</hibernate-mapping>

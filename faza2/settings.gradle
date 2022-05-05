@@ -1,0 +1,9 @@
+rootProject.name = "theater"
+include 'theaterModel'
+include 'theaterPersistence'
+include 'theaterService'
+include 'theaterUi'
+include 'theaterUi'
+include 'theaterUi'
+include 'theaterUi'
+
