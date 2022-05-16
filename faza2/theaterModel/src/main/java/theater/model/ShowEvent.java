@@ -13,6 +13,11 @@ public class ShowEvent extends Entity<Integer> implements Serializable {
         this.name = name;
         this.numberOfSeats = numberOfSeats;
     }
+    public ShowEvent(Integer id,String name, Integer numberOfSeats) {
+        this.id=id;
+        this.name = name;
+        this.numberOfSeats = numberOfSeats;
+    }
 
     public Integer getId() {
         return id;

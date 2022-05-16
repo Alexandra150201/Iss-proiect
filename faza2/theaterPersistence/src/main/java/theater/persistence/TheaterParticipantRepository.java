@@ -78,7 +78,7 @@ public class TheaterParticipantRepository implements ITheaterParticipantRepo {
     }
 
     @Override
-    public void delete(Integer integer) throws IOException {
+    public void delete(TheaterParticipant entity) throws IOException {
 
     }
 

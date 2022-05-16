@@ -7,6 +7,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import theater.model.Seat;
+import theater.model.ShowEvent;
 import theater.model.TheaterParticipant;
 
 import java.io.IOException;
@@ -80,7 +81,7 @@ public class SeatRepository implements ISeatRepo{
     }
 
     @Override
-    public void delete(Integer integer) throws IOException {
+    public void delete(Seat entity) throws IOException {
 
     }
 
@@ -92,7 +93,9 @@ public class SeatRepository implements ISeatRepo{
                 Transaction tx = null;
                 try {
                     tx = session.beginTransaction();
-                    session.update(entity);
+                    Seat ent= (Seat) session.load( Seat.class, entity.getId() );
+                    ent.setStatus(entity.getStatus());
+                    ent.setBooking(entity.getBooking());
                     tx.commit();
                     return entity;
                 } catch (RuntimeException ex) {

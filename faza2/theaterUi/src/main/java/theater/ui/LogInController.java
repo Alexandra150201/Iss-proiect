@@ -94,8 +94,7 @@ public class LogInController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/manageBookings.fxml"));
             root = loader.load();
             ManageBookingsController controller = loader.getController();
-            controller.setService(this.srv);
-            controller.setParticipant(theaterParticipant);}
+            controller.setService(this.srv);}
         stage =(Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

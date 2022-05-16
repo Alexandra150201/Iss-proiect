@@ -9,7 +9,22 @@ public class Booking extends Entity<Integer> implements Serializable {
     private ShowEvent showEvent;
 
     public Booking(){};
-    public Booking(String name, Double telephone,ShowEvent showEvent) {
+
+    @Override
+    public String toString() {
+        return "id=" + id +
+                ", name='" + name + '\'' +
+                ", telephone=" + telephone +
+                ", showEvent=" + showEvent.getName();
+    }
+
+    public Booking(String name, Double telephone, ShowEvent showEvent) {
+        this.name = name;
+        this.telephone = telephone;
+        this.showEvent = showEvent;
+    }
+    public Booking(Integer id,String name, Double telephone, ShowEvent showEvent) {
+        this.id=id;
         this.name = name;
         this.telephone = telephone;
         this.showEvent = showEvent;

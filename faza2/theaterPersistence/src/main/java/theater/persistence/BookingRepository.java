@@ -6,10 +6,12 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.Query;
 import theater.model.Booking;
 import theater.model.Seat;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 public class BookingRepository implements IBookingRepo{
@@ -54,6 +56,27 @@ public class BookingRepository implements IBookingRepo{
 
     @Override
     public Iterable<Booking> findAll() {
+        try {
+            initialize();
+            try (Session session = sessionFactory.openSession()) {
+                Transaction tx = null;
+                try {
+                    tx = session.beginTransaction();
+                    List<Booking> participants = session.createQuery("FROM Booking", Booking.class).list();
+                    tx.commit();
+                    return participants;
+                } catch (RuntimeException ex) {
+                    System.err.println("Eroare la select " + ex);
+                    if (tx != null)
+                        tx.rollback();
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Exception " + e);
+            e.printStackTrace();
+        } finally {
+            close();
+        }
         return null;
     }
 
@@ -82,7 +105,29 @@ public class BookingRepository implements IBookingRepo{
     }
 
     @Override
-    public void delete(Integer integer) throws IOException {
+    public void delete(Booking entity) throws IOException {
+        try {
+            initialize();
+            try (Session session = sessionFactory.openSession()) {
+                Transaction tx = null;
+                try {
+                    tx = session.beginTransaction();
+                    String hql = String.format("delete from Booking where id=%d",entity.getId());
+                    Query query = session.createQuery(hql);
+                    query.executeUpdate();
+                    tx.commit();
+                } catch (RuntimeException ex) {
+                    System.err.println("Eroare la delete " + ex);
+                    if (tx != null)
+                        tx.rollback();
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Exception " + e);
+            e.printStackTrace();
+        } finally {
+            close();
+        }
 
     }
 

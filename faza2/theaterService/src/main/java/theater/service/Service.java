@@ -6,6 +6,7 @@ import theater.persistence.SeatRepository;
 import theater.persistence.ShowEventRepository;
 import theater.persistence.TheaterParticipantRepository;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,9 @@ public class Service {
     }
 
     public ShowEvent getShowEvent() {
-        return StreamSupport.stream(showEventRepository.findAll().spliterator(), false).toList().get(0);
+        if(StreamSupport.stream(showEventRepository.findAll().spliterator(), false).toList().size()!=0)
+            return StreamSupport.stream(showEventRepository.findAll().spliterator(), false).toList().get(0);
+        else return null;
     }
 
     public void makeBooking(String name, Double telephone, Iterable<Seat> seats, ShowEvent showEvent) {
@@ -69,5 +72,46 @@ public class Service {
             if(s.getNumber().equals(Integer.valueOf(position)))
                 return  s;
         return null;
+    }
+
+    public Iterable<Booking> getBookings(ShowEvent show) {
+        Iterable<Booking> bookings= bookingRepository.findAll();
+        ArrayList<Booking> bb= new ArrayList<>();
+        for(Booking b : bookings)
+            if(b.getShowEvent().getName().equals(show.getName()))
+                bb.add(b);
+        return bb;
+    }
+
+    public ShowEvent addEvent(String nume, int seats) {
+        ShowEvent event= new ShowEvent(1,nume,seats);
+        showEventRepository.save(event);
+        ShowEvent ev=getShowEvent();
+        return ev;
+    }
+
+    public ShowEvent deleteEvent(String nume, Integer seats) {
+        ShowEvent event= new ShowEvent(1,nume,seats);
+        try {
+            Iterable<Seat> seatss=getSeats(event);
+            Iterable<Booking> bookings=getBookings(event);
+            for( Seat seat :seatss )
+                seatRepository.update(new Seat(seat.getId(),seat.getPosition(),seat.getNumber(),seat.getPrice(),StatusType.empty,null));
+            for( Booking b : bookings )
+                bookingRepository.delete(b);
+            showEventRepository.delete(event);
+            return  getShowEvent();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return getShowEvent();
+    }
+
+
+    public ShowEvent updateEvent(String nume, int seats) {
+        ShowEvent event= new ShowEvent(1,nume,seats);
+        showEventRepository.update(event);
+        ShowEvent ev=getShowEvent();
+        return ev;
     }
 }

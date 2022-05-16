@@ -34,6 +34,14 @@ public class Seat extends Entity<Integer> implements Serializable{
         this.status = status;
         this.booking=booking;
     }
+    public Seat(Integer id,String position, Integer number, Float price, StatusType status, Booking booking) {
+        this.id=id;
+        this.position = position;
+        this.number = number;
+        this.price = price;
+        this.status = status;
+        this.booking=booking;
+    }
 
 
 

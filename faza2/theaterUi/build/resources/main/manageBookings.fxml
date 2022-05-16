@@ -3,16 +3,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="592.0" style="-fx-background-color: #782121;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theater.ui.ManageBookingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="686.0" style="-fx-background-color: #782121;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theater.ui.ManageBookingsController">
     <children>
-        <TextField layoutX="144.0" layoutY="127.0" prefHeight="26.0" prefWidth="190.0" />
-        <PasswordField layoutX="228.0" layoutY="167.0" prefHeight="26.0" prefWidth="106.0" />
-        <Label layoutX="221.0" layoutY="80.0" text="THE EVENT SHOW" textFill="#d17a7a">
+        <TextField fx:id="nameField" layoutX="187.0" layoutY="129.0" prefHeight="26.0" prefWidth="190.0" />
+        <Label fx:id="eventLabel" layoutX="221.0" layoutY="80.0" text="THE EVENT SHOW" textFill="#d17a7a">
             <font>
                 <Font size="14.0" />
             </font>
@@ -27,22 +25,22 @@
                 <Font size="45.0" />
             </font>
         </Label>
-        <Button layoutX="377.0" layoutY="111.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #d48282;" text="ADD EVENT" textFill="#631010">
+        <Button layoutX="475.0" layoutY="112.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #d48282;" text="ADD EVENT" textFill="#631010">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
-        <Button layoutX="376.0" layoutY="241.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #d48282;" text="EMPTY SEATS REPORT" textFill="#631010">
+        <Button layoutX="475.0" layoutY="252.0" mnemonicParsing="false" onAction="#emptySeatsReport" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #d48282;" text="EMPTY SEATS REPORT" textFill="#631010">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
-        <Button layoutX="375.0" layoutY="152.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #d48282;" text="UPDATE EVENT" textFill="#631010">
+        <Button layoutX="475.0" layoutY="155.0" mnemonicParsing="false" onAction="#updateEvent" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #d48282;" text="UPDATE EVENT" textFill="#631010">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
-        <Button layoutX="376.0" layoutY="193.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #d48282;" text="DELETE EVENT" textFill="#631010">
+        <Button layoutX="475.0" layoutY="203.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="30.0" prefWidth="171.0" style="-fx-background-color: #d48282;" text="DELETE EVENT" textFill="#631010">
             <font>
                 <Font size="14.0" />
             </font>
@@ -52,11 +50,12 @@
                 <Font size="14.0" />
             </font>
         </Label>
-        <ListView layoutX="9.0" layoutY="232.0" prefHeight="158.0" prefWidth="330.0" style="-fx-background-color: #d48282;" />
-        <Label layoutX="66.0" layoutY="208.0" prefHeight="20.0" prefWidth="180.0" text="THE BOOKINGS MADE:" textFill="#d17a7a">
+        <ListView fx:id="bookingsListView" layoutX="9.0" layoutY="232.0" prefHeight="158.0" prefWidth="450.0" style="-fx-background-color: #d48282;" />
+        <Label layoutX="137.0" layoutY="208.0" prefHeight="20.0" prefWidth="180.0" text="THE BOOKINGS MADE:" textFill="#d17a7a">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
+      <TextField fx:id="seatsField" layoutX="221.0" layoutY="167.0" />
     </children>
 </AnchorPane>
