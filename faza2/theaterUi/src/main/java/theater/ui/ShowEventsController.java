@@ -2,16 +2,22 @@ package theater.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import theater.model.Seat;
 import theater.model.ShowEvent;
 import theater.model.TheaterParticipant;
 import theater.service.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,6 +99,22 @@ public class ShowEventsController {
     private Label status;
     private List<Seat> selectedSeats=new ArrayList<>();
     private List<Button> buttons= new ArrayList<>();
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+
+    public void switchLogIn(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/logIn.fxml"));
+        root = loader.load();
+
+        LogInController controller = loader.getController();
+        controller.init();
+        stage =(Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @FXML
     void bookSeatsButton(ActionEvent event) {
         if(name.getText().isEmpty() || phone.getText().isEmpty())

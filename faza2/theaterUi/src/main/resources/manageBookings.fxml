@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="686.0" style="-fx-background-color: #782121;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theater.ui.ManageBookingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="686.0" style="-fx-background-color: #782121;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theater.ui.ManageBookingsController">
     <children>
         <TextField fx:id="nameField" layoutX="187.0" layoutY="129.0" prefHeight="26.0" prefWidth="190.0" />
         <Label fx:id="eventLabel" layoutX="221.0" layoutY="80.0" text="THE EVENT SHOW" textFill="#d17a7a">
@@ -57,5 +57,10 @@
             </font>
         </Label>
       <TextField fx:id="seatsField" layoutX="221.0" layoutY="167.0" />
+      <Button layoutX="609.0" layoutY="349.0" mnemonicParsing="false" onAction="#switchLogIn" prefHeight="30.0" prefWidth="54.0" style="-fx-background-color: #d48282;" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

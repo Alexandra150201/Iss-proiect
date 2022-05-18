@@ -2,12 +2,19 @@ package theater.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import theater.model.*;
 import theater.service.Service;
+
+import java.io.IOException;
 
 public class ManageBookingsController {
     private Service srv;
@@ -20,7 +27,23 @@ public class ManageBookingsController {
     private TextField nameField;
     @FXML
     private TextField seatsField;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
+
+
+    public void switchLogIn(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/logIn.fxml"));
+        root = loader.load();
+
+        LogInController controller = loader.getController();
+        controller.init();
+        stage =(Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     void addEvent(ActionEvent event) {
